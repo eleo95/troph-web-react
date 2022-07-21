@@ -2,7 +2,7 @@
 
 // import { Link } from 'react-router-dom'
 
-import useAllGames from '../hooks/useAllGames'
+import {useAllGames} from '../hooks/useAllGames'
 
 
 interface Props {
@@ -23,8 +23,8 @@ const ShowAllGames = ({onBack,onSelected,selectedGame}:Props) => {
 
     const { data, isLoading, isError, error } = useAllGames(onSuccess, onError)
 
-    if (isLoading) (<h2>Loading...</h2>)
-    if (isError) (<h2>{error.message}</h2>)
+    if (isLoading) return (<h2>Loading...</h2>)
+    if (isError) return (<h2>{error.message}</h2>)
 
     return (
         <div className='flex flex-col font-lexend pt-4 '>

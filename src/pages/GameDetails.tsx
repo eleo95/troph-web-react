@@ -1,5 +1,5 @@
 // import { useParams, useNavigate } from "react-router-dom"
-import useGameDetails from "../hooks/useGameDetails"
+import {useGameDetails} from "../hooks/useGameDetails"
 
 interface Props {
     gameId: string;
@@ -20,14 +20,15 @@ const GameDetails = ({ gameId, onBack }: Props) => {
     // const navigate = useNavigate()
     if (isLoading) return (<h2>Loading...</h2>)
     if (isError) return (<h2>{error.message}</h2>)
+    
     return <div>
         {/* <h2 onClick={()=>navigate(-1)}>Game Detail</h2> */}
-        <div className='flex justify-start space-x-2 px-2 py-4'>
+        <div className='flex justify-start w-full py-4'>
             <img onClick={() => onBack()} className='w-8 h-8 cursor-pointer' src="https://icongr.am/material/close.svg?size=32&color=000" alt="" />
             <h1 className='text-2xl'>Game Details</h1>
         </div>
         {/* <h2 onClick={()=>onBack()}>Game Detail</h2> */}
-        <div className='px-4'>
+        {/* <div className=''> */}
             <div className='flex pb-4'>
                 {/* <img className='w-auto h-auto rounded-md ' src={userpic} alt="" /> */}
                 <img className='w-auto h-24 rounded-md' src={`https://retroachievements.org${data?.ImageBoxArt??''}`} alt="" />
@@ -65,7 +66,7 @@ const GameDetails = ({ gameId, onBack }: Props) => {
             </div>
 
         </div>
-    </div>
+    // </div>
 }
 
 export default GameDetails

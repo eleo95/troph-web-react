@@ -7,6 +7,7 @@ function App() {
   const queryClient = new QueryClient()
 
   return <QueryClientProvider client={queryClient}>
+    {/* <div className='w-full h-5 bg-red-500 sm:bg-orange-500 md:bg-amber-500 lg:bg-green-500 xl:bg-blue-500  text-center top-0 mb-2 pb-2'>DEMO: stale-time cache: unlimited</div> */}
     <Router>
       <Routes>
         <Route path='/' element={<Dashboard />} />

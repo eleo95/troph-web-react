@@ -13,7 +13,7 @@ const fetchRcentGames = () => {
 }
     
 
-const usePlayerInfo = (onSuccess: ((data: any) => void), onError: (error: Error) => void) => {
+export const usePlayerInfo = (onSuccess: ((data: any) => void), onError: (error: Error) => void) => {
     return useQuery<PlayerInfo, Error>(
         'recent_games',
         fetchRcentGames,
@@ -26,4 +26,3 @@ const usePlayerInfo = (onSuccess: ((data: any) => void), onError: (error: Error)
 
 }
 
-export default usePlayerInfo

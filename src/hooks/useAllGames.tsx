@@ -8,7 +8,7 @@ const fetchGame = ():Promise<GameInfo[]> => {
     .then(res => res.json())
 }
 
-const useAllGames = ( onSuccess:((data:any)=>void), onError:(error:Error)=>void) => {
+export const useAllGames = ( onSuccess:((data:any)=>void), onError:(error:Error)=>void) => {
    return useQuery<GameInfo[], Error>(
         ['all_games'],
         fetchGame,
@@ -20,5 +20,3 @@ const useAllGames = ( onSuccess:((data:any)=>void), onError:(error:Error)=>void)
     )
 
 }
-
-export default useAllGames

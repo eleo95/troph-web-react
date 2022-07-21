@@ -13,7 +13,7 @@ const fetchGame = ({queryKey}:any):Promise<Game> => {
     }))
 }
 
-const useGameDetails = (gameID:string, onSuccess:((data:any)=>void), onError:(error:Error)=>void) => {
+export const useGameDetails = (gameID:string, onSuccess:((data:any)=>void), onError:(error:Error)=>void) => {
    return useQuery<Game, Error>(
         ['recent_games',gameID],
         fetchGame,
@@ -25,5 +25,3 @@ const useGameDetails = (gameID:string, onSuccess:((data:any)=>void), onError:(er
     )
 
 }
-
-export default useGameDetails

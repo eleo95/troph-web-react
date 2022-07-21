@@ -6,12 +6,15 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import { useState } from 'react'
 
 import GameDetails from './GameDetails'
-import usePlayerInfo from '../hooks/usePlayerInfo'
+import {usePlayerInfo} from '../hooks/usePlayerInfo'
 import ShowAllGames from './ShowAllGames'
 
 dayjs.extend(relativeTime)
 
 const Dashboard = () => {
+
+    const [selectedGame, setSelectedGame] = useState('')
+    const [showAllOpened, setShowAllOpened] = useState(false)
 
     const onError = (error: Error) => {
         // console.log("Something went wrong...", error)
@@ -21,17 +24,25 @@ const Dashboard = () => {
         // console.log("great! so, a sideeffect goes here", data)
     }
 
-    const { data, isLoading, isError, error } = usePlayerInfo(onSuccess, onError)
 
-    if (isLoading) (<h2>Loading...</h2>)
-    if (isError) (<h2>{error.message}</h2>)
+    const { data, isLoading, isError, error, isFetching } = usePlayerInfo(onSuccess, onError)
 
-    const [selectedGame, setSelectedGame] = useState('')
-    const [showAllOpened, setShowAllOpened] = useState(false)
+    if (isLoading || isFetching) {
+        return (
+            <div>
+                <h1>Loading.....</h1>
+            </div>
+        )
+    }
+    if (isError) {
+        return (<h2>{error.message}</h2>)
+    }
+
+
 
     return (
         <div className='flex font-lexend'>
-            <div className={(selectedGame || showAllOpened) ? `hidden ${showAllOpened ? '' : 'md:block'} md:w-1/3` : ''}>
+            <div className={(selectedGame || showAllOpened) ? `hidden ${showAllOpened ? '' : 'md:block'} md:w-1/2` : 'w-full min-w-1/2 md:w-1/2'}>
                 <div className='flex items-center mx-4'>
                     {/* <img src={`https://retroachievements.org/${data?.UserPic}`} alt="" /> */}
                     <div className='flex flex-col items-center leading-none justify-center'>
@@ -41,7 +52,8 @@ const Dashboard = () => {
                         </div>
                         <span className='text-center'>{data?.UserID}</span>
                     </div>
-                    <div className='flex space-x-8 flex-1 justify-around ml-8 py-4'>
+                    <div className='flex flex-1'></div>
+                    <div className='flex space-x-4 flex-1 justify-around ml-8 py-4'>
                         <div className='flex flex-col items-center'>
                             <img className='w-6 h-6' src="https://icongr.am/material/plus-circle-multiple-outline.svg?size=32&color=000" alt="" />
                             <span className='font-bold text-sm'>{parseInt(data?.Points ?? '').toLocaleString('en-US')}</span>
@@ -83,7 +95,7 @@ const Dashboard = () => {
                                     <img className='w-12 h-12 rounded-md' src={`https://retroachievements.org${ImageIcon??''}`} alt="" />
                                     <div className='flex flex-col space-y-0 ml-2'>
                                         <span className='font-bold text-sm'>{Title}</span>
-                                        <span className='text-xs'>{dayjs(LastPlayed).fromNow()}</span>
+                                        <span className='text-xs'>  {dayjs(LastPlayed).fromNow()}</span>
                                     </div>
                                 </div>
                             </div>
@@ -92,11 +104,11 @@ const Dashboard = () => {
                 </div>
             </div>
             {
-                showAllOpened && <div className={`${(selectedGame) ? 'hidden md:block md:w-1/3' : 'w-full md:w-max md:max-w-1/3'} h-screen overflow-auto`}>
+                showAllOpened && <div className={`${(selectedGame) ? 'hidden md:block md:w-1/2' : ''} h-screen overflow-auto w-full md:w-1/2  `}>
                     <ShowAllGames onBack={() => setShowAllOpened(false)} onSelected={setSelectedGame} selectedGame={selectedGame} />
                 </div>
             }
-            {selectedGame ? <div className='h-screen overflow-auto'>
+            {selectedGame ? <div className='h-screen overflow-auto w-full px-4'>
                 <GameDetails gameId={selectedGame} onBack={() => setSelectedGame('')} />
             </div> : <div className='hidden md:flex w-full justify-center items-center'>
                 Select a Game
