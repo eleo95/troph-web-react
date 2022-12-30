@@ -20,6 +20,7 @@ export const usePlayerInfo = (onSuccess: ((data: any) => void), onError: (error:
         {
             onSuccess,
             onError,
+            refetchOnWindowFocus: false,
             staleTime: 1000 * 60 // 60s
         }
     )

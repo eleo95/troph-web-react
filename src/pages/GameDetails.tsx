@@ -1,5 +1,6 @@
 // import { useParams, useNavigate } from "react-router-dom"
 import {useGameDetails} from "../hooks/useGameDetails"
+import GameDetailsLoading from "./GameDetailsLoading";
 
 interface Props {
     gameId: string;
@@ -18,20 +19,16 @@ const GameDetails = ({ gameId, onBack }: Props) => {
 
     const { data, isLoading, isError, error } = useGameDetails(gameId, onSuccess, onError)
     // const navigate = useNavigate()
-    if (isLoading) return (<h2>Loading...</h2>)
+    if (isLoading) return (<GameDetailsLoading />)
     if (isError) return (<h2>{error.message}</h2>)
     
     return <div>
-        {/* <h2 onClick={()=>navigate(-1)}>Game Detail</h2> */}
         <div className='flex justify-start w-full py-4'>
-            <img onClick={() => onBack()} className='w-8 h-8 cursor-pointer' src="https://icongr.am/material/close.svg?size=32&color=000" alt="" />
+            <img onClick={() => onBack()} className='w-8 h-8 cursor-pointer' src="https://icongr.am/material/close.svg?size=32&color=000" alt="close button" />
             <h1 className='text-2xl'>Game Details</h1>
         </div>
-        {/* <h2 onClick={()=>onBack()}>Game Detail</h2> */}
-        {/* <div className=''> */}
             <div className='flex pb-4'>
-                {/* <img className='w-auto h-auto rounded-md ' src={userpic} alt="" /> */}
-                <img className='w-auto h-24 rounded-md' src={`https://retroachievements.org${data?.ImageBoxArt??''}`} alt="" />
+                <img className='w-auto h-24 rounded-md' src={`https://retroachievements.org${data?.ImageBoxArt??''}`} alt="box art image" />
                 <div className='ml-2'>
                     <h1 className='text-xl md:text-3xl font-bold'>{data?.Title}</h1>
                     <p className='text-sm md:text-md'>{data?.ConsoleName}</p>
@@ -66,7 +63,6 @@ const GameDetails = ({ gameId, onBack }: Props) => {
             </div>
 
         </div>
-    // </div>
 }
 
 export default GameDetails

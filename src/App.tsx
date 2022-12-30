@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import { QueryClientProvider, QueryClient } from 'react-query'
-import {ReactQueryDevtools } from 'react-query/devtools'
+// import {ReactQueryDevtools } from 'react-query/devtools'
 
 function App() {
   const queryClient = new QueryClient()
