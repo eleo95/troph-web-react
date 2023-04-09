@@ -1,13 +1,15 @@
 import { useAllGames } from "../hooks/useAllGames";
+import type UserData from "../types/UserData";
 import { ConsolesCodesMap } from "../utils/ConsoleRepo";
 
 interface Props {
   onBack: Function;
   onSelected: Function;
   selectedGame: string;
+  user: UserData
 }
 
-const ShowAllGames = ({ onBack, onSelected, selectedGame }: Props) => {
+const ShowAllGames = ({ onBack, onSelected, selectedGame,user }: Props) => {
   const onError = (error: Error) => {
     // console.log("Something went wrong...", error)
   };
@@ -16,15 +18,15 @@ const ShowAllGames = ({ onBack, onSelected, selectedGame }: Props) => {
     // console.log("great! so, a sideeffect goes here", data)
   };
 
-  const { data, isLoading, isError, error } = useAllGames(onSuccess, onError);
+  const { data, isLoading, isError, error } = useAllGames(user, onSuccess, onError);
 
   // if (isLoading) return (<h2>Loading...</h2>)
   if (isError) return <h2>{error.message}</h2>;
 
   return (
-    <div className="flex flex-col font-lexend pt-4 ">
-      <div className="flex justify-between px-2 items-center w-full">
-        <div className="flex space-x-2">
+    <div className="flex flex-col font-lexend pt-4 h-screen">
+      <div className="flex justify-between items-center w-full">
+        <div className="flex gap-x-2 items-center">
           <img
             onClick={() => onBack()}
             className="w-8 h-8 cursor-pointer"
@@ -35,7 +37,7 @@ const ShowAllGames = ({ onBack, onSelected, selectedGame }: Props) => {
         </div>
         {/* <span className='font-bold text-xs cursor-pointer' onClick={()=>onSelected('771')}>Show all</span> */}
       </div>
-      <div className="space-y-2 px-2 pt-2">
+      <div className="pt-2 overflow-y-auto h-fit space-y-2">
         {isLoading ? (
           <div className="w-full animate-pulse">
             {Array.from([0, 1, 3, 4, 5, 6, 7, 8, 9]).map((e) => {

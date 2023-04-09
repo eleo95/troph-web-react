@@ -1,17 +1,42 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 
 import GameDetails from "./GameDetails";
 import { usePlayerInfo } from "../hooks/usePlayerInfo";
 import ShowAllGames from "./ShowAllGames";
 import { ConsolesCodesMap } from "../utils/ConsoleRepo";
+import { LoadingPage } from "../components/Loading";
+import { useNavigate } from "react-router-dom";
+import { useCurrentUserContext } from "../hooks/UseCurrentUserContext";
+import UserData from "../types/UserData";
+import TrophyIcon from "../components/icons/TrophyIcon";
 
 dayjs.extend(relativeTime);
 
 const Dashboard = () => {
   const [selectedGame, setSelectedGame] = useState("");
   const [showAllOpened, setShowAllOpened] = useState(false);
+  const navigate = useNavigate()
+
+  const {user} = useCurrentUserContext()
+  
+  useEffect(()=>{
+    if(Object.keys(user).length === 0){
+      navigate("/")
+    }
+  },[user])
+
+  if (Object.keys(user).length === 0) {
+    return (
+      <LoadingPage/>
+    );
+  }
+
+  function clearUser() {
+    window.localStorage.removeItem("currentUser")
+
+  }
 
   const onError = (error: Error) => {
     // console.log("Something went wrong...", error)
@@ -22,41 +47,38 @@ const Dashboard = () => {
   };
 
   const { data, isLoading, isError, error, isFetching } = usePlayerInfo(
-    onSuccess,
-    onError
+    user as UserData
   );
 
   if (isLoading || isFetching) {
     return (
-      <div>
-        <h1>Loading.....</h1>
-      </div>
+      <LoadingPage/>
     );
   }
   if (isError) {
     return <h2>{error.message}</h2>;
   }
 
-//   console.log(data);
+  // console.log(data);
 
   return (
-    <div className="flex font-lexend m-2">
+    <div className="flex font-lexend px-2">
       <div
         className={
           selectedGame || showAllOpened
-            ? `hidden ${showAllOpened ? "" : "md:block"} md:w-1/2`
-            : "w-full min-w-1/2 md:w-1/2"
+            ? `hidden ${showAllOpened ? "" : "md:block"} md:w-1/3`
+            : "w-full min-w-1/3 md:w-1/3"
         }
       >
         <div className="flex justify-start gap-2 items-center mt-4">
-        <img
-                className="w-6 h-6 hover:rotate-12 transition-transform"
-                src="https://icongr.am/material/trophy.svg?size=148&color=000000"
-                alt=""
-              />
+              <TrophyIcon size={24} className="hover:rotate-12 transition-transform" />
           <h2 className="text-xl">Turbocheevos</h2>
+          <div className="flex-1"></div>
+          <form onSubmit={clearUser} className="border-2 border-black px-2 rounded-full">
+            <button type="submit">Log Out</button>
+          </form>
         </div>
-        <div className="flex items-center mx-2">
+        <div className="flex items-center mx-2 mt-4">
           <div className="flex flex-col items-center leading-none justify-center">
             <div className="w-16 h-16 relative">
               <img
@@ -107,16 +129,16 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl">Recent Played Games</h2>
-          <span
-            className="font-bold text-xs cursor-pointer"
+        <div className="flex justify-between items-center mt-4">
+          <h2 className="sm:text-xl">Recent Played Games</h2>
+          <button
+            className="font-bold text-xs cursor-pointer bg-black text-white px-2 rounded-full"
             onClick={() => setShowAllOpened(!showAllOpened)}
           >
             Show all
-          </span>
+          </button>
         </div>
-        <div className="space-y-1  pt-2">
+        <div className="space-y-1 pt-2">
           {data?.RecentlyPlayed.map(
             ({ GameID, Title, ConsoleID, LastPlayed, ImageIcon }) => (
               <div
@@ -136,8 +158,12 @@ const Dashboard = () => {
                   />
                   <div className="flex flex-col gap-1 ml-2">
                     <span className="font-bold text-sm">{Title}</span>
-                    <span className="text-xs flex gap-1">
-                      <span className="text-xs bg-gray-800 text-white rounded-full max-w-fit px-1">
+                    <span className="text-xs flex gap-1 items-center">
+                      <span className={`text-xs rounded-full max-w-fit px-1 border-2 ${
+                        selectedGame === GameID
+                        ? "border-white text-white "
+                        : "border-gray-800 text-black"
+                      }`}>
                         {ConsolesCodesMap.get(ConsoleID)}
                       </span>
                       <span>&#8226;</span>
@@ -153,10 +179,11 @@ const Dashboard = () => {
       {showAllOpened && (
         <div
           className={`${
-            selectedGame ? "hidden md:block md:w-1/2" : ""
-          } h-screen overflow-auto w-full md:w-1/2  `}
+            selectedGame ? "hidden md:block" : ""
+          } h-full overflow-auto w-full md:w-1/3  `}
         >
           <ShowAllGames
+            user={user as UserData}
             onBack={() => setShowAllOpened(false)}
             onSelected={setSelectedGame}
             selectedGame={selectedGame}
@@ -164,8 +191,9 @@ const Dashboard = () => {
         </div>
       )}
       {selectedGame ? (
-        <div className="h-screen overflow-auto w-full px-4">
+        <div className="h-full overflow-auto w-full md:pl-4">
           <GameDetails
+            user={user as UserData}
             gameId={selectedGame}
             onBack={() => setSelectedGame("")}
           />

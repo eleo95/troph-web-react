@@ -1,6 +1,6 @@
 export interface GameInfo {
     GameID: string;
-    ConsoleID: string;
+    ConsoleID: number;
     ConsoleName: string;
     Title: string;
     ImageIcon: string;
