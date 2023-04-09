@@ -1,6 +1,6 @@
 export interface GameInfo {
     GameID: string;
-    ConsoleID: string;
+    ConsoleID: number;
     ConsoleName: string;
     Title: string;
     ImageIcon: string;
@@ -12,11 +12,13 @@ export interface PlayerInfo {
     UserID: string;
     ID: string;
     Points: string;
+    TotalSoftcorePoints: string;
     UserPic: string;
     Motto: string;
     RichPresenceMsg: string;
     Rank: number;
+    TotalRanked: string;
     MemberSince: string;
-    RecentlyPlayed: GameInfo[]
+    RecentlyPlayed: GameInfo[];
 
 }
