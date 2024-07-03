@@ -1,0 +1,176 @@
+
+{
+    "RecentlyPlayedCount": 5,
+    "RecentlyPlayed": [
+      {
+        "GameID": "771",
+        "ConsoleID": 5,
+        "ConsoleName": "Game Boy Advance",
+        "Title": "Mario & Luigi: Superstar Saga",
+        "ImageIcon": "/Images/008994.png",
+        "LastPlayed": "2022-06-30 03:51:44",
+        "MyVote": null
+      },
+      {
+        "GameID": "677",
+        "ConsoleID": 5,
+        "ConsoleName": "Game Boy Advance",
+        "Title": "Mother 3",
+        "ImageIcon": "/Images/042438.png",
+        "LastPlayed": "2022-04-29 01:25:18",
+        "MyVote": null
+      }
+    ],
+    "MemberSince": "2016-12-18 17:30:29",
+    "LastActivity": {
+      "ID": "46591369",
+      "timestamp": "2022-07-17 02:26:19",
+      "lastupdate": "2022-07-17 02:26:19",
+      "activitytype": "2",
+      "User": "eleo95",
+      "data": null,
+      "data2": null
+    },
+    "RichPresenceMsg": "Mario is Level 26, Luigi is Level 26, exploring ocean floor area.",
+    "LastGameID": "771",
+    "LastGame": {
+      "ID": 771,
+      "Title": "Mario & Luigi: Superstar Saga",
+      "ConsoleID": 5,
+      "ForumTopicID": 1461,
+      "Flags": 0,
+      "ImageIcon": "/Images/008994.png",
+      "ImageTitle": "/Images/033805.png",
+      "ImageIngame": "/Images/002111.png",
+      "ImageBoxArt": "/Images/014492.png",
+      "Publisher": "Nintendo",
+      "Developer": "AlphaDream",
+      "Genre": "RPG",
+      "Released": "November 17, 2003",
+      "IsFinal": false,
+      "ConsoleName": "Game Boy Advance",
+      "RichPresencePatch": "Lookup:LevelName\r\n0x00=beginning\r\n0x19=a familiar pipe like\r\n0x20=a castle\r\n0x17=Mushroom Kingdom grounds\r\n0x22=the Koopa Cruiser\r\n0x08=Stardust Fields\r\n0x16=an underground\r\n0x0f=BeanBean Castle\r\n0x1f=a BeanBean village\r\n0x09=HooHoo Mountain\r\n0x1e=Mine Cart\r\n0x0c=BeanBean Outskirts\r\n0x2a=Chateau de Chucklehuck\r\n0x0d=Chucklehuck Woods\r\n0x11=Woohoo Hooniversity\r\n0x15=the beach\r\n0x13=an ancient temple\r\n0x0e=ocean floor\r\n0x12=Teehee Valley\r\n0x14=Little Fungitown\r\n0x18=Bowser's Castle\r\n0x27=THE ENDING CUTSCENE\r\n0x28=the game credits\r\n0x03=the ORIGINAL Mario Bros.\r\n\r\nFormat:Level\r\nFormatType=VALUE\r\n\r\nDisplay:\r\nMario is Level @Level(0xh00c888), Luigi is Level @Level(0xh00c8c4), exploring @LevelName(0xh000de4) area."
+    },
+    "ContribCount": "0",
+    "ContribYield": "0",
+    "TotalPoints": "627",
+    "TotalTruePoints": "1013",
+    "Permissions": "1",
+    "Untracked": "0",
+    "ID": "31575",
+    "UserWallActive": "1",
+    "Motto": "",
+    "Rank": 38288,
+    "Awarded": {
+      "559": {
+        "NumPossibleAchievements": "67",
+        "PossibleScore": "730",
+        "NumAchieved": "3",
+        "ScoreAchieved": "11",
+        "NumAchievedHardcore": 0,
+        "ScoreAchievedHardcore": 0
+      },
+      "677": {
+        "NumPossibleAchievements": "187",
+        "PossibleScore": "1017",
+        "NumAchieved": "14",
+        "ScoreAchieved": "35",
+        "NumAchievedHardcore": 0,
+        "ScoreAchievedHardcore": 0
+      },
+      "771": {
+        "NumPossibleAchievements": "70",
+        "PossibleScore": "600",
+        "NumAchieved": "39",
+        "ScoreAchieved": "264",
+        "NumAchievedHardcore": 0,
+        "ScoreAchievedHardcore": 0
+      },
+      "810": {
+        "NumPossibleAchievements": "113",
+        "PossibleScore": "831",
+        "NumAchieved": "1",
+        "ScoreAchieved": "1",
+        "NumAchievedHardcore": 0,
+        "ScoreAchievedHardcore": 0
+      },
+      "2818": {
+        "NumPossibleAchievements": "72",
+        "PossibleScore": "485",
+        "NumAchieved": "11",
+        "ScoreAchieved": "48",
+        "NumAchievedHardcore": 0,
+        "ScoreAchievedHardcore": 0
+      }
+    },
+    "RecentAchievements": {
+      "677": {
+        "184360": {
+          "ID": "184360",
+          "GameID": "677",
+          "GameTitle": "Mother 3",
+          "Title": "Cookie Monster [m]",
+          "Description": "Take all of Mike's slightly unclean cookies during the forest fire.",
+          "Points": "1",
+          "BadgeName": "204871",
+          "IsAwarded": "1",
+          "DateAwarded": "2022-04-29 01:26:50",
+          "HardcoreAchieved": "0"
+        }
+      },
+      "771": {
+        "40719": {
+          "ID": "40719",
+          "GameID": "771",
+          "GameTitle": "Mario & Luigi: Superstar Saga",
+          "Title": "No Receipt, No Refund",
+          "Description": "Create every design and receive Harhall's Pants.",
+          "Points": "10",
+          "BadgeName": "186930",
+          "IsAwarded": "1",
+          "DateAwarded": "2022-04-29 00:13:50",
+          "HardcoreAchieved": "0"
+        },
+        "40737": {
+          "ID": "40737",
+          "GameID": "771",
+          "GameTitle": "Mario & Luigi: Superstar Saga",
+          "Title": "Exciting Rewards on Your Next Visit",
+          "Description": "Get the Excite Spring from Professor E. Gadd!",
+          "Points": "5",
+          "BadgeName": "186948",
+          "IsAwarded": "1",
+          "DateAwarded": "2022-04-29 00:37:59",
+          "HardcoreAchieved": "0"
+        },
+        "40738": {
+          "ID": "40738",
+          "GameID": "771",
+          "GameTitle": "Mario & Luigi: Superstar Saga",
+          "Title": "With Great Force Comes Great Reward Points",
+          "Description": "Get the Great Force from Professor E. Gadd!",
+          "Points": "5",
+          "BadgeName": "186949",
+          "IsAwarded": "1",
+          "DateAwarded": "2022-04-29 00:39:21",
+          "HardcoreAchieved": "0"
+        },
+        "40739": {
+          "ID": "40739",
+          "GameID": "771",
+          "GameTitle": "Mario & Luigi: Superstar Saga",
+          "Title": "By Grabthar's Hammer ... What a Savings",
+          "Description": "Get the Power Grip from Professor E. Gadd!",
+          "Points": "5",
+          "BadgeName": "186950",
+          "IsAwarded": "1",
+          "DateAwarded": "2022-04-29 01:06:19",
+          "HardcoreAchieved": "0"
+        }
+      }
+    },
+    "Points": "627",
+    "UserPic": "/UserPic/eleo95.png",
+    "TotalRanked": 43300,
+    "Status": "Online"
+  }

@@ -3,6 +3,7 @@ import Dashboard from './pages/Dashboard'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import Login from './pages/Login'
 import {UserContextProvider} from './contexts/CurrentUser'
+import DemoPage from './components/demoPage/DemoPage'
 // import {ReactQueryDevtools } from 'react-query/devtools'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login/>} />
         <Route path='/home' element={<Dashboard />} />
+        <Route path='/demo' element={<DemoPage />} />
       </Routes>
     </Router>
     {/* <ReactQueryDevtools initialIsOpen={false} position='bottom-right'/> */}
