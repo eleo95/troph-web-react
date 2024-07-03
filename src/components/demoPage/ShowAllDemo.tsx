@@ -3,7 +3,7 @@ import game from "../../assets/game_detail.json"
 interface Props {
   onBack: () => void;
   onSelected:(gameId:number) => void;
-  selectedGame: string;
+  selectedGame: number|null;
 }
 
 const ShowAllGamesDemo = ({ onBack, onSelected, selectedGame }: Props) => {
@@ -60,7 +60,7 @@ const isError = false
             <div
               key={GameID}
               className={`p-2 rounded-md cursor-pointer transition-all 200ms ease-out  ${
-                selectedGame === GameID+""
+                selectedGame === GameID
                   ? "text-white bg-black"
                   : "hover:bg-gray-100"
               }`}

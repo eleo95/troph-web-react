@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { GameType } from "../types/Game";
 import UserData from "../types/UserData";
 
-const fetchGame = (gameId: string, user: UserData): Promise<GameType> => {
+const fetchGame = (gameId: number, user: UserData): Promise<GameType> => {
   // const raUser =  import.meta.env.VITE_RA_USER
   return (
     fetch(
@@ -21,7 +21,7 @@ const fetchGame = (gameId: string, user: UserData): Promise<GameType> => {
   );
 };
 
-export const useGameDetails = (user: UserData, gameID: string) => {
+export const useGameDetails = (user: UserData, gameID: number) => {
   return useQuery<GameType, Error>({
     queryKey: ["game_detail", gameID],
     queryFn: () => fetchGame(gameID, user),

@@ -5,7 +5,7 @@ import GameDetailsLoading from "./GameDetailsLoading";
 
 interface Props {
   user: UserData;
-  gameId: string;
+  gameId: number;
   onBack: ()=> void;
 }
 

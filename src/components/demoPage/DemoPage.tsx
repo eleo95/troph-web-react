@@ -11,8 +11,11 @@ import GameDetailsDemo from "./GameDetailsDemo";
 dayjs.extend(relativeTime);
 
 const DemoPage = () => {
-  const [selectedGame, setSelectedGame] = useState("");
+  const [selectedGame, setSelectedGame] = useState<number|null>(null);
   const [showAllOpened, setShowAllOpened] = useState(false);
+  const onSelected = (state:number) => {
+    setSelectedGame(state)
+  }  
 
   return (
     <div className="flex font-lexend px-2">
@@ -55,7 +58,7 @@ const DemoPage = () => {
                 alt=""
               />
               <span className="font-bold text-sm">
-                {parseInt(data.TotalPoints ?? "0").toLocaleString("en-US")}
+                {data.TotalPoints.toLocaleString("en-US")}
               </span>
               <span className="text-sm">Points</span>
             </div>
@@ -94,7 +97,7 @@ const DemoPage = () => {
         </div>
         <div className="space-y-1 pt-2">
           {data?.RecentlyPlayed.map(
-            ({ GameID, Title, ConsoleID, LastPlayed, ImageIcon }) => (
+            ({ GameID, Title, ConsoleID, LastPlayed,ImageIcon  }) => (
               <div
                 key={GameID}
                 className={`p-2 rounded-md cursor-pointer transition-all 200ms ease-out  ${
@@ -141,7 +144,7 @@ const DemoPage = () => {
           <ShowAllGamesDemo
             // user={user as UserData}
             onBack={() => setShowAllOpened(false)}
-            onSelected={setSelectedGame}
+            onSelected={onSelected}
             selectedGame={selectedGame}
           />
         </div>
@@ -150,8 +153,8 @@ const DemoPage = () => {
         <div className="h-full overflow-auto w-full md:pl-4">
           <GameDetailsDemo
             // user={user as UserData}
-            onBack={() => setSelectedGame("")}
-            gameId={parseInt(selectedGame)}
+            onBack={() => setSelectedGame(null)}
+            gameId={selectedGame}
           />
         </div>
       ) : (
