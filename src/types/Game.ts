@@ -1,7 +1,7 @@
-export interface Game {
-    ID: string;
+export interface GameType {
+    ID: number;
     Title: string;
-    ConsoleID: string;
+    ConsoleID: number;
     ConsoleName: string;
     ImageIcon: string;
     ImageTitle: string;
@@ -11,7 +11,7 @@ export interface Game {
     Developer: string;
     Genre: string;
     Released: string;
-    LastPlayed: string;
+    // LastPlayed: string;
     NumAchievements: number;
     NumDistinctPlayersCasual: string;
     NumDistinctPlayersHardcore: string;
@@ -19,7 +19,7 @@ export interface Game {
     NumAwardedToUserHardcore: number;
     UserCompletion: string;
     UserCompletionHardcore: string;
-    Achievements: Achievement[]
+    Achievements: { [key: string]: Achievement };
 
 }
 
@@ -36,6 +36,5 @@ export interface Achievement {
     DateCreated:  string;
     BadgeName:  string;
     DisplayOrder:  string;
-    DateEarned: string;
-    // MemAddr: string;
+    DateEarned?: string;
 }

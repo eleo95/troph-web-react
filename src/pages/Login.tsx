@@ -11,7 +11,7 @@ import TrophyIcon from "../components/icons/TrophyIcon";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 import UserData from "../types/UserData";
-import { LoadingPage, LoadingSpinner } from "../components/Loading";
+import { LoadingPage } from "../components/Loading";
 
 dayjs.extend(relativeTime);
 

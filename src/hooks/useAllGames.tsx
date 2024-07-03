@@ -1,4 +1,4 @@
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 import { GameInfo } from "../types/gameInfo"
 import UserData from "../types/UserData"
 
@@ -12,13 +12,11 @@ const fetchGame = ({queryKey}:any):Promise<GameInfo[]> => {
 
 export const useAllGames = (user: UserData, onSuccess:((data:any)=>void), onError:(error:Error)=>void) => {
    return useQuery<GameInfo[], Error>(
-        ['all_games',user],
-        fetchGame,
-        {
-            onSuccess,
-            onError,
-            staleTime: 1000 * 60 * 5 // 5 min
-        }
+       {
+        queryKey: ['all_games',user],
+        queryFn: fetchGame,
+        staleTime: 1000 * 60 * 5 // 5 min
+       }
     )
 
 }

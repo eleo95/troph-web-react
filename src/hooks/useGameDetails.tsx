@@ -1,8 +1,8 @@
-import { useQuery } from "react-query"
-import { Game } from '../types/Game'
+import { useQuery } from "@tanstack/react-query"
+import { GameType } from '../types/Game'
 import UserData from "../types/UserData"
 
-const fetchGame = ({queryKey}:any):Promise<Game> => {
+const fetchGame = ({queryKey}:any):Promise<GameType> => {
     const gameId = queryKey[1]
     const user=queryKey[2] as UserData
     // const raUser =  import.meta.env.VITE_RA_USER
@@ -20,12 +20,10 @@ const fetchGame = ({queryKey}:any):Promise<Game> => {
 }
 
 export const useGameDetails = (user:UserData, gameID:string, onSuccess:((data:any)=>void), onError:(error:Error)=>void) => {
-   return useQuery<Game, Error>(
-        [`game_detail_${gameID}`,gameID, user],
-        fetchGame,
+   return useQuery<GameType, Error>(
         {
-            onSuccess,
-            onError,
+            queryKey:[`game_detail_${gameID}`,gameID, user],
+            queryFn: fetchGame,
             staleTime: 1000 * 60 * 10 // 5 min
         }
     )

@@ -64,14 +64,14 @@ const GameDetails = ({ user,gameId, onBack }: Props) => {
         ></div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 h-fit overflow-y-auto">
-        {data?.Achievements.sort(
+        {data && Object.values(data.Achievements).sort(
           (a, b) => parseInt(a.DisplayOrder) - parseInt(b.DisplayOrder)
         ).map(({ ID, Title, Description, BadgeName, DateEarned }) => {
           return (
-            <div
+            <button
               key={ID}
               id={ID}
-              className={`p-2 rounded-md cursor-pointer transition-all 200ms ease-out hover:bg-gray-100`}
+              className={`text-start p-2 rounded-md cursor-pointer transition-all 200ms ease-out hover:bg-gray-100`}
               onClick={() => {}}
             >
               {/* <Link to={`/game/${GameID}`}> */}
@@ -79,7 +79,7 @@ const GameDetails = ({ user,gameId, onBack }: Props) => {
                 {/* <img className='w-12 h-12 rounded-md ' src={userpic} alt="" /> */}
                 <img
                   className="w-12 h-12 rounded-md "
-                  src={`https://s3-eu-west-1.amazonaws.com/i.retroachievements.org/Badge/${BadgeName}${
+                  src={`https://media.retroachievements.org/Badge/${BadgeName}${
                     DateEarned ? "" : "_lock"
                   }.png`}
                   alt=""
@@ -90,7 +90,7 @@ const GameDetails = ({ user,gameId, onBack }: Props) => {
                 </div>
               </div>
               {/* </Link> */}
-            </div>
+            </button>
           );
         })}
       </div>

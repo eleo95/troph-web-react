@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
-import { QueryClientProvider, QueryClient } from 'react-query'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import Login from './pages/Login'
 import {UserContextProvider} from './contexts/CurrentUser'
 // import {ReactQueryDevtools } from 'react-query/devtools'
