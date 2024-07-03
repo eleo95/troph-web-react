@@ -3,7 +3,7 @@ import rawdata from "../../assets/game_detail.json"
 
 interface Props {
   gameId: number;
-  onBack: Function;
+  onBack: () => void;
 }
 
 const GameDetailsDemo = ({ gameId, onBack }: Props) => {

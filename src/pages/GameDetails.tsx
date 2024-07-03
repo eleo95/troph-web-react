@@ -6,24 +6,15 @@ import GameDetailsLoading from "./GameDetailsLoading";
 interface Props {
   user: UserData;
   gameId: string;
-  onBack: Function;
+  onBack: ()=> void;
 }
 
 const GameDetails = ({ user,gameId, onBack }: Props) => {
   // const {gameId=''} = useParams()
-  const onError = (error: Error) => {
-    // console.log("Something went wrong...", error)
-  };
-
-  const onSuccess = (data: any) => {
-    // console.log("great! so, a sideeffect goes here", data)
-  };
 
   const { data, isLoading, isError, error } = useGameDetails(
     user,
     gameId,
-    onSuccess,
-    onError
   );
   // const navigate = useNavigate()
   if (isLoading) return <GameDetailsLoading />;
@@ -65,12 +56,12 @@ const GameDetails = ({ user,gameId, onBack }: Props) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 h-fit overflow-y-auto">
         {data && Object.values(data.Achievements).sort(
-          (a, b) => parseInt(a.DisplayOrder) - parseInt(b.DisplayOrder)
+          (a, b) => a.DisplayOrder - b.DisplayOrder
         ).map(({ ID, Title, Description, BadgeName, DateEarned }) => {
           return (
             <button
               key={ID}
-              id={ID}
+              id={ID+""}
               className={`text-start p-2 rounded-md cursor-pointer transition-all 200ms ease-out hover:bg-gray-100`}
               onClick={() => {}}
             >

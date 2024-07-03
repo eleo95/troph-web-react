@@ -5,7 +5,7 @@ export interface GameInfo {
     Title: string;
     ImageIcon: string;
     LastPlayed: string;	
-    MyVote: any;
+    MyVote: unknown;
 }
 
 export interface PlayerInfo {

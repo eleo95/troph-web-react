@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { FormEvent, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import GameDetails from "./GameDetails";
 import { usePlayerInfo } from "../hooks/usePlayerInfo";
@@ -19,13 +19,18 @@ const Dashboard = () => {
   const [showAllOpened, setShowAllOpened] = useState(false);
   const navigate = useNavigate()
 
+
   const {user} = useCurrentUserContext()
   
+  const { data, isLoading, isError, error, isFetching } = usePlayerInfo(
+    user as UserData
+  );
+
   useEffect(()=>{
     if(Object.keys(user).length === 0){
       navigate("/")
     }
-  },[user])
+  },[user, navigate])
 
   if (Object.keys(user).length === 0) {
     return (
@@ -37,18 +42,6 @@ const Dashboard = () => {
     window.localStorage.removeItem("currentUser")
 
   }
-
-  const onError = (error: Error) => {
-    // console.log("Something went wrong...", error)
-  };
-
-  const onSuccess = (data: any) => {
-    // console.log("great! so, a sideeffect goes here", data)
-  };
-
-  const { data, isLoading, isError, error, isFetching } = usePlayerInfo(
-    user as UserData
-  );
 
   if (isLoading || isFetching) {
     return (

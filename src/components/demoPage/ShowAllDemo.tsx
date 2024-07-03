@@ -1,8 +1,8 @@
 import game from "../../assets/game_detail.json"
 
 interface Props {
-  onBack: Function;
-  onSelected: Function;
+  onBack: () => void;
+  onSelected:(gameId:number) => void;
   selectedGame: string;
 }
 

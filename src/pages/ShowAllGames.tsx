@@ -1,24 +1,16 @@
 import { useAllGames } from "../hooks/useAllGames";
 import type UserData from "../types/UserData";
-import { ConsolesCodesMap } from "../utils/ConsoleRepo";
 
 interface Props {
-  onBack: Function;
-  onSelected: Function;
+  onBack: () => void;
+  onSelected: (gameId:string) => void;
   selectedGame: string;
   user: UserData
 }
 
 const ShowAllGames = ({ onBack, onSelected, selectedGame,user }: Props) => {
-  const onError = (error: Error) => {
-    // console.log("Something went wrong...", error)
-  };
 
-  const onSuccess = (data: any) => {
-    // console.log("great! so, a sideeffect goes here", data)
-  };
-
-  const { data, isLoading, isError, error } = useAllGames(user, onSuccess, onError);
+  const { data, isLoading, isError, error } = useAllGames(user);
 
   // if (isLoading) return (<h2>Loading...</h2>)
   if (isError) return <h2>{error.message}</h2>;
@@ -64,7 +56,7 @@ const ShowAllGames = ({ onBack, onSelected, selectedGame,user }: Props) => {
             })}
           </div>
         ) : (
-          data?.map(({ GameID, Title, ConsoleName, ImageIcon, LastPlayed }) => (
+          data?.map(({ GameID, Title, ConsoleName, ImageIcon }) => (
             <div
               key={GameID}
               className={`p-2 rounded-md cursor-pointer transition-all 200ms ease-out  ${

@@ -1,9 +1,9 @@
-import { createContext, FC } from "react";
+import { createContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import UserData from "../types/UserData";
 
 
-interface IUSerContext {
+export interface IUSerContext {
     user: Partial<UserData>;
     setUser:  (value: Partial<UserData> | ((val: Partial<UserData>) => Partial<UserData>)) => void
 }
