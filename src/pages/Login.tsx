@@ -2,16 +2,12 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { FC, FormEvent, useEffect, useState } from "react";
 
-import GameDetails from "./GameDetails";
-import { usePlayerInfo } from "../hooks/usePlayerInfo";
-import ShowAllGames from "./ShowAllGames";
-import { ConsolesCodesMap } from "../utils/ConsoleRepo";
 import TextField from "../components/TextField";
 import TrophyIcon from "../components/icons/TrophyIcon";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 import UserData from "../types/UserData";
-import { LoadingPage, LoadingSpinner } from "../components/Loading";
+import { LoadingPage } from "../components/Loading";
 
 dayjs.extend(relativeTime);
 
@@ -34,7 +30,7 @@ const Login: FC = () => {
     }
 
     setIsLoading(false);
-  }, []);
+  }, [currentUser, navigate]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

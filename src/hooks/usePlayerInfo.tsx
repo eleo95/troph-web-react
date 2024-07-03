@@ -1,9 +1,9 @@
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 import { PlayerInfo } from '../types/gameInfo'
 import UserData from "../types/UserData"
 
-const fetchRcentGames = ({queryKey}:any) => {
-    const user = queryKey[1] as UserData
+const fetchRcentGames = (user: UserData) => {
+    // const user = user as UserData
     if(!user) return Promise.reject('No User/Apikey registered!')
     // const raUser =  import.meta.env.VITE_RA_USER
     // return fetch(`https://retroachievements.org/API/API_GetUserSummary.php?z=${raUser}&y=${import.meta.env.VITE_RA_API_KEY}&u=${raUser}&g=5&a=5`)
@@ -13,24 +13,20 @@ const fetchRcentGames = ({queryKey}:any) => {
         .then(data => ({
             ...data,
             UserID: data.LastActivity.User
-        })).catch((e)=>{
+        })).catch(()=>{
             throw Error('Wrong User or key!')
         })
 }
     
 
-export const usePlayerInfo = (user:UserData, onSuccess?: ((data: any) => void), onError?: (error: Error) => void) => {
+export const usePlayerInfo = (user:UserData) => {
  
-    return useQuery<PlayerInfo, Error>(
-        ['player_info', user],
-        fetchRcentGames,
-        {
-            onSuccess,
-            onError,
-            refetchOnWindowFocus: false,
-            staleTime: 1000 * 60 // 60s
-        }
-    )
+    return useQuery<PlayerInfo, Error>({
+        queryKey: ['player_info'],
+        queryFn: () =>fetchRcentGames(user),
+        refetchOnWindowFocus: false,
+        staleTime: 1000 * 60 // 60s
+    })
 
 }
 

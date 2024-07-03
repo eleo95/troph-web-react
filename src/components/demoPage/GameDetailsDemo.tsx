@@ -1,24 +1,21 @@
-// import { useParams, useNavigate } from "react-router-dom"
-import { useGameDetails } from "../hooks/useGameDetails";
-import UserData from "../types/UserData";
-import GameDetailsLoading from "./GameDetailsLoading";
+import GameDetailsLoading from "../../pages/GameDetailsLoading";
+import rawdata from "../../assets/game_detail.json"
 
 interface Props {
-  user: UserData;
   gameId: number;
-  onBack: ()=> void;
+  onBack: () => void;
 }
 
-const GameDetails = ({ user,gameId, onBack }: Props) => {
-  // const {gameId=''} = useParams()
+const GameDetailsDemo = ({ gameId, onBack }: Props) => {
+  
+    const data = rawdata.find(e=>e.ID === gameId)
+    const isLoading = false
+    // const isError = false
 
-  const { data, isLoading, isError, error } = useGameDetails(
-    user,
-    gameId,
-  );
+  
   // const navigate = useNavigate()
   if (isLoading) return <GameDetailsLoading />;
-  if (isError) return <h2>{error.message}</h2>;
+//   if (isError) return <h2>{error.message}</h2>;
 
   return (
     <div className="flex flex-col justify-start items-start h-screen py-2">
@@ -55,14 +52,14 @@ const GameDetails = ({ user,gameId, onBack }: Props) => {
         ></div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 h-fit overflow-y-auto">
-        {data && Object.values(data.Achievements).sort(
+        {!!data && Object.values(data.Achievements).sort(
           (a, b) => a.DisplayOrder - b.DisplayOrder
-        ).map(({ ID, Title, Description, BadgeName, DateEarned }) => {
+        ).map(({ ID, Title, Description, BadgeName,  DateEarned, }) => {
           return (
-            <button
+            <div
               key={ID}
               id={ID+""}
-              className={`text-start p-2 rounded-md cursor-pointer transition-all 200ms ease-out hover:bg-gray-100`}
+              className={`p-2 rounded-md cursor-pointer transition-all 200ms ease-out hover:bg-gray-100`}
               onClick={() => {}}
             >
               {/* <Link to={`/game/${GameID}`}> */}
@@ -81,7 +78,7 @@ const GameDetails = ({ user,gameId, onBack }: Props) => {
                 </div>
               </div>
               {/* </Link> */}
-            </button>
+            </div>
           );
         })}
       </div>
@@ -89,4 +86,4 @@ const GameDetails = ({ user,gameId, onBack }: Props) => {
   );
 };
 
-export default GameDetails;
+export default GameDetailsDemo;

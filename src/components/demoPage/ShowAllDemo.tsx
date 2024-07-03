@@ -1,20 +1,19 @@
-import GameRow from "../components/GameRow";
-import { useAllGames } from "../hooks/useAllGames";
-import type UserData from "../types/UserData";
+import game from "../../assets/game_detail.json"
 
 interface Props {
   onBack: () => void;
-  onSelected: (gameId:number) => void;
+  onSelected:(gameId:number) => void;
   selectedGame: number|null;
-  user: UserData
 }
 
-const ShowAllGames = ({ onBack, onSelected, selectedGame,user }: Props) => {
-
-  const { data, isLoading, isError, error } = useAllGames(user);
+const ShowAllGamesDemo = ({ onBack, onSelected, selectedGame }: Props) => {
+  
+const data = Array.from(game)
+const isLoading = false
+const isError = false
 
   // if (isLoading) return (<h2>Loading...</h2>)
-  if (isError) return <h2>{error.message}</h2>;
+  if (isError) return <h2>Errorr</h2>;
 
   return (
     <div className="flex flex-col font-lexend pt-4 h-screen">
@@ -57,40 +56,32 @@ const ShowAllGames = ({ onBack, onSelected, selectedGame,user }: Props) => {
             })}
           </div>
         ) : (
-          // data?.map(({ GameID, Title, ConsoleName, ImageIcon }) => (
-          //   <div
-          //     key={GameID}
-          //     className={`p-2 rounded-md cursor-pointer transition-all 200ms ease-out  ${
-          //       selectedGame === GameID
-          //         ? "text-white bg-black"
-          //         : "hover:bg-gray-100"
-          //     }`}
-          //     onClick={() => onSelected(GameID)}
-          //   >
-          //     <div className="flex items-start">
-          //       <img
-          //         className="w-12 h-12 rounded-md"
-          //         src={`https://retroachievements.org${ImageIcon ?? ""}`}
-          //         alt=""
-          //       />
-          //       <div className="flex flex-col space-y-0 ml-2">
-          //         <span className="font-bold text-sm">{Title}</span>
-          //         <span className="text-xs flex gap-1">
-          //           <span className="text-xs">
-          //             {ConsoleName}
-          //           </span>
-          //         </span>
-          //       </div>
-          //     </div>
-          //   </div>
-          // ))
-          data?.map((gameInfo) => (
-            <GameRow
-              gameInfo={gameInfo}
-              key={gameInfo.GameID}
-              onSelected={onSelected}
-              selectedGame={selectedGame}
-            />
+          data?.map(({ ID:GameID, Title, ConsoleName, ImageIcon }) => (
+            <div
+              key={GameID}
+              className={`p-2 rounded-md cursor-pointer transition-all 200ms ease-out  ${
+                selectedGame === GameID
+                  ? "text-white bg-black"
+                  : "hover:bg-gray-100"
+              }`}
+              onClick={() => onSelected(GameID)}
+            >
+              <div className="flex items-start">
+                <img
+                  className="w-12 h-12 rounded-md"
+                  src={`https://retroachievements.org${ImageIcon ?? ""}`}
+                  alt=""
+                />
+                <div className="flex flex-col space-y-0 ml-2">
+                  <span className="font-bold text-sm">{Title}</span>
+                  <span className="text-xs flex gap-1">
+                    <span className="text-xs">
+                      {ConsoleName}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
           ))
         )}
       </div>
@@ -98,4 +89,4 @@ const ShowAllGames = ({ onBack, onSelected, selectedGame,user }: Props) => {
   );
 };
 
-export default ShowAllGames;
+export default ShowAllGamesDemo;

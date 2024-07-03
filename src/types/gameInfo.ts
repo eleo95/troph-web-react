@@ -1,24 +1,42 @@
 export interface GameInfo {
-    GameID: string;
-    ConsoleID: number;
-    ConsoleName: string;
-    Title: string;
-    ImageIcon: string;
-    LastPlayed: string;	
-    MyVote: any;
+  GameID:            number;
+  ConsoleID:         number;
+  ConsoleName:       string;
+  Title:             string;
+  ImageIcon:         string;
+  ImageTitle:        string;
+  ImageIngame:       string;
+  ImageBoxArt:       string;
+  LastPlayed:        string;
+  AchievementsTotal: number;
 }
 
 export interface PlayerInfo {
-    UserID: string;
-    ID: string;
-    Points: string;
-    TotalSoftcorePoints: string;
-    UserPic: string;
-    Motto: string;
-    RichPresenceMsg: string;
-    Rank: number;
-    TotalRanked: string;
-    MemberSince: string;
-    RecentlyPlayed: GameInfo[];
-
+  User: string;
+  MemberSince: string;
+  LastActivity: {
+    ID:           number;
+    timestamp:    null;
+    activitytype: null;
+    User:         string;
+  };
+  RichPresenceMsg: string;
+  LastGameID: number;
+  ContribCount: number;
+  ContribYield: number;
+  TotalPoints: number;
+  TotalSoftcorePoints: number;
+  TotalTruePoints: number;
+  Permissions: number;
+  Untracked: number;
+  ID: number;
+  UserWallActive: number;
+  Motto: string;
+  Rank: null;
+  RecentlyPlayedCount: number;
+  RecentlyPlayed: GameInfo[];
+  UserPic: string;
+  TotalRanked: number;
+  Status: string;
+  UserID: string;
 }

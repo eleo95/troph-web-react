@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 interface IconProps {
     size?: number;
@@ -22,4 +22,4 @@ const TrophyIcon:FC<IconProps> = ({size,color,className}) => {
   );
 }
 
-export default React.memo(TrophyIcon);
+export default TrophyIcon;
