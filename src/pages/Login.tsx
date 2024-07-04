@@ -19,7 +19,7 @@ const Login: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const navigate = useNavigate();
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   //   const { data, error } = usePlayerInfo(currentUser as UserData,enabledUserVerify)
   useEffect(() => {
@@ -34,7 +34,7 @@ const Login: FC = () => {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setIsVerifying(true)
+    setIsVerifying(true);
 
     const formElements = [...event.currentTarget.elements];
     // await setEnabledUserVerify(true)
@@ -54,60 +54,84 @@ const Login: FC = () => {
     )
       .then((response) => {
         if (response.ok) {
-            setCurrentUser(userData);
-            navigate(0)
-        }  else {
-            setError("Conection Error. Try again later.")
+          setCurrentUser(userData);
+          navigate(0);
+        } else {
+          setError("Conection Error. Try again later.");
         }
       })
       .catch((e: Error) => {
-        setError(e.name+" : "+e.message)
+        setError(e.name + " : " + e.message);
         throw new Error(e.message);
-        
       })
-      .finally(()=>{
-        setIsVerifying(false)
+      .finally(() => {
+        setIsVerifying(false);
       });
-    
   }
   if (isLoading) {
-    return<LoadingPage />;
+    return <LoadingPage />;
   }
 
   return (
     <div className="flex font-lexend px-2 h-screen dark:bg-black items-center">
       <div className={"w-full min-w-1/3 md:w-1/3"}>
-        <div className="flex justify-start gap-2 items-center mb-8">
-          <TrophyIcon size={24} className="hover:rotate-12 transition-transform fill-black dark:fill-white" />
-          <h2 className="text-xl dark:text-white">Turbocheevos</h2>
+        <div className="flex justify-between items-center mb-8">
+          <div className="flex justify-start gap-2 items-center">
+            <TrophyIcon
+              size={24}
+              className="hover:rotate-12 transition-transform fill-black dark:fill-white"
+            />
+            <h2 className="text-xl dark:text-white">Turbocheevos</h2>
+          </div>
+          <a
+            href="/demo"
+            className="dark:text-white text-black border-2 dark:border-gray-300 border-black px-2 py-1 rounded-lg"
+          >
+            Try our Demo
+          </a>
         </div>
 
         {/* <div> */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
           <TextField id="userName" label="Username" symbol="@" />
           <TextField id="apiKey" label="Api Key" symbol="Key" />
-          {
-            !!error && (
-                <div className="text-red-500 border-2 border-red-500 p-2 rounded-lg flex justify-between" onClick={()=>setError("")}>
-                    <span>{error}</span>
-                    <span className="cursor-pointer" onClick={()=>setError("")}>x</span>
-                </div>
-            )
-          }
+          {!!error && (
+            <div
+              className="text-red-500 border-2 border-red-500 p-2 rounded-lg flex justify-between"
+              onClick={() => setError("")}
+            >
+              <span>{error}</span>
+              <span className="cursor-pointer" onClick={() => setError("")}>
+                x
+              </span>
+            </div>
+          )}
           <button
             disabled={isVerifying}
             className="disabled:bg-gray-50 disabled:border-gray-300 disabled:text-gray-400  disabled:cursor-not-allowed p-2 rounded-xl dark:bg-white cursor-pointer border-2 border-black flex justify-center gap-2 mt-4"
             type="submit"
-          > {isVerifying ? "Loging in...":"Log In"}</button>
+          >
+            {" "}
+            {isVerifying ? "Loging in..." : "Log In"}
+          </button>
         </form>
         <p className="text-xs text-gray-500 text-center mt-2">
-        Get Your personal web API key at <a className="text-black" href="https://retroAchievements.org" target="_blank" rel="noopener">RetroAchievements.org</a>'s Settings page.
+          Get Your personal web API key at{" "}
+          <a
+            className="text-gray-600"
+            href="https://retroAchievements.org"
+            target="_blank"
+            rel="noopener"
+          >
+            RetroAchievements.org
+          </a>
+          's Settings page.
         </p>
         {/* </div> */}
       </div>
       <div className="hidden md:flex w-full justify-center items-center dark:text-white">
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ">
-            Login Page
+          Login Page
         </span>
       </div>
     </div>
