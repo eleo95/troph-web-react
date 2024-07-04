@@ -1,11 +1,12 @@
 import TrophyIcon from "../components/icons/TrophyIcon";
 import { PlayerInfo } from "../types/gameInfo";
 import GameRow from "../components/GameRow";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   user?: PlayerInfo;
   onSelected: (gameId: number) => void;
-  selectedGame: number|null;
+  selectedGame: number | null;
   onShowAll: (state: boolean) => void;
 }
 
@@ -15,9 +16,11 @@ export default function UserProfile({
   onSelected,
   onShowAll,
 }: Props) {
+  const navigate = useNavigate();
 
   function clearUser() {
     window.localStorage.removeItem("currentUser");
+    navigate("/home", { replace: true });
   }
 
   return (
@@ -57,9 +60,7 @@ export default function UserProfile({
               alt=""
             />
             <span className="font-bold text-sm">
-              {user?.TotalSoftcorePoints.toLocaleString(
-                "en-US"
-              )}
+              {user?.TotalSoftcorePoints.toLocaleString("en-US")}
             </span>
             <span className="text-sm">Points</span>
           </div>

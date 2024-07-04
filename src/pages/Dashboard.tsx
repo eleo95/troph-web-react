@@ -1,5 +1,3 @@
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import { useEffect, useState } from "react";
 
 import GameDetails from "./GameDetails";
@@ -11,10 +9,8 @@ import { useCurrentUserContext } from "../hooks/UseCurrentUserContext";
 import UserData from "../types/UserData";
 import UserProfile from "./UserProfile";
 
-dayjs.extend(relativeTime);
-
 const Dashboard = () => {
-  const [selectedGame, setSelectedGame] = useState<number|null>(null);
+  const [selectedGame, setSelectedGame] = useState<number | null>(null);
   const [showAllOpened, setShowAllOpened] = useState(false);
   const navigate = useNavigate();
 
