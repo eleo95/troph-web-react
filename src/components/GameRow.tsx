@@ -1,19 +1,25 @@
 import dayjs from "dayjs";
-import { GameInfo } from "../types/gameInfo";
+import { GameInfo, GameInfoAlt } from "../types/gameInfo";
 import { ConsolesCodesMap } from "../utils/ConsoleRepo";
 
 interface Props {
-  gameInfo: GameInfo;
+  gameInfo: GameInfo | GameInfoAlt;
   onSelected: (gameId: number) => void;
-  selectedGame: number|null;
+  selectedGame: number | null;
 }
 
 export default function GameRow({ gameInfo, selectedGame, onSelected }: Props) {
-  const { GameID, Title, ConsoleID,LastPlayed, ImageIcon } = gameInfo;
-//   console.log(gameInfo)
-//   console.log(dayjs(LastPlayed).fromNow())
+  //   console.log(gameInfo)
+  //   console.log(dayjs(LastPlayed).fromNow())
+  const { Title, ConsoleID, ImageIcon } = gameInfo;
+  const isGameInfo = !!("GameID" in gameInfo);
+  const GameID = isGameInfo ? gameInfo.GameID : gameInfo.ID;
+  const LastPlayed = isGameInfo ? gameInfo.LastPlayed : undefined;
+
+  console.log("iiiiiiiiii", selectedGame);
   return (
     <button
+      key={GameID + "_button"}
       className={`text-start w-full p-2 rounded-md cursor-pointer transition-all 200ms ease-out  ${
         selectedGame === GameID ? "text-white bg-black" : "hover:bg-gray-100"
       }`}
@@ -37,14 +43,12 @@ export default function GameRow({ gameInfo, selectedGame, onSelected }: Props) {
             >
               {ConsolesCodesMap.get(ConsoleID)}
             </span>
-            {
-                LastPlayed && (
-                    <>
-                        <span>&#8226;</span>
-                        Played {dayjs(LastPlayed).fromNow()}
-                    </>
-                )
-            }
+            {LastPlayed && (
+              <>
+                <span>&#8226;</span>
+                Played {dayjs(LastPlayed).fromNow()}
+              </>
+            )}
           </span>
         </div>
       </div>
