@@ -1,13 +1,13 @@
 export interface GameInfo {
-  GameID:            number;
-  ConsoleID:         number;
-  ConsoleName:       string;
-  Title:             string;
-  ImageIcon:         string;
-  ImageTitle:        string;
-  ImageIngame:       string;
-  ImageBoxArt:       string;
-  LastPlayed:        string;
+  GameID: number;
+  ConsoleID: number;
+  ConsoleName: string;
+  Title: string;
+  ImageIcon: string;
+  ImageTitle: string;
+  ImageIngame: string;
+  ImageBoxArt: string;
+  LastPlayed: string;
   AchievementsTotal: number;
 }
 
@@ -15,10 +15,10 @@ export interface PlayerInfo {
   User: string;
   MemberSince: string;
   LastActivity: {
-    ID:           number;
-    timestamp:    null;
+    ID: number;
+    timestamp: null;
     activitytype: null;
-    User:         string;
+    User: string;
   };
   RichPresenceMsg: string;
   LastGameID: number;
@@ -39,4 +39,17 @@ export interface PlayerInfo {
   TotalRanked: number;
   Status: string;
   UserID: string;
+}
+
+export interface GameInfoAlt {
+  ID: number;
+  ConsoleID: number;
+  ForumTopicID: number;
+  DateModified: string;
+  Title: string;
+  ConsoleName: string;
+  ImageIcon: string;
+  Points: number;
+  NumAchievements: number;
+  NumLeaderboards: number;
 }

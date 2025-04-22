@@ -8,10 +8,14 @@ import { useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../hooks/UseCurrentUserContext";
 import UserData from "../types/UserData";
 import UserProfile from "./UserProfile";
+import TabSwitcher from "../components/TabSwitcher";
+import GameSearch from "./GameSearch";
+import Header from "../components/Header";
 
 const Dashboard = () => {
   const [selectedGame, setSelectedGame] = useState<number | null>(null);
   const [showAllOpened, setShowAllOpened] = useState(false);
+  const [open, setOpen] = useState(true);
   const navigate = useNavigate();
 
   const { user } = useCurrentUserContext();
@@ -37,23 +41,34 @@ const Dashboard = () => {
     return <h2>{error.message}</h2>;
   }
 
-  // console.log(data);
+  console.log("wwwwwwwwwww", selectedGame);
 
   return (
-    <div className="flex font-lexend px-2">
+    <div className="flex font-lexend px-2 h-screen">
       <div
         className={
           selectedGame || showAllOpened
             ? `hidden ${showAllOpened ? "" : "md:block"} md:w-1/3`
-            : "w-full transition-all duration-700 min-w-1/3 md:w-1/3"
+            : "w-full transition-all duration-700 min-w-1/3 md:w-1/3 h-full flex flex-col"
         }
       >
-        <UserProfile
-          user={data}
-          onShowAll={setShowAllOpened}
-          selectedGame={selectedGame}
-          onSelected={setSelectedGame}
-        />
+        <Header />
+        {open ? (
+          <UserProfile
+            user={data}
+            onShowAll={setShowAllOpened}
+            selectedGame={selectedGame}
+            onSelected={setSelectedGame}
+          />
+        ) : (
+          <GameSearch
+            user={user as UserData}
+            selectedGame={selectedGame}
+            onSelected={setSelectedGame}
+          />
+        )}
+        <div className="flex h-full"></div>
+        <TabSwitcher open={open} setOpen={() => setOpen(!open)} />
       </div>
       {showAllOpened && (
         <div

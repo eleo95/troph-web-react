@@ -1,7 +1,5 @@
-import TrophyIcon from "../components/icons/TrophyIcon";
 import { PlayerInfo } from "../types/gameInfo";
 import GameRow from "../components/GameRow";
-import { useNavigate } from "react-router-dom";
 
 interface Props {
   user?: PlayerInfo;
@@ -16,16 +14,16 @@ export default function UserProfile({
   onSelected,
   onShowAll,
 }: Props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  function clearUser() {
-    window.localStorage.removeItem("currentUser");
-    navigate("/home", { replace: true });
-  }
+  // function clearUser() {
+  //   window.localStorage.removeItem("currentUser");
+  //   navigate("/home", { replace: true });
+  // }
 
   return (
     <>
-      <div className="flex justify-start gap-2 items-center mt-4">
+      {/* <div className="flex justify-start gap-2 items-center mt-4">
         <TrophyIcon
           size={24}
           className="hover:rotate-12 transition-transform"
@@ -38,7 +36,7 @@ export default function UserProfile({
         >
           <button type="submit">Log Out</button>
         </form>
-      </div>
+      </div> */}
       <div className="flex items-center mx-2 mt-4">
         <div className="flex flex-col items-center leading-none justify-center">
           <div className="w-16 h-16 relative">
